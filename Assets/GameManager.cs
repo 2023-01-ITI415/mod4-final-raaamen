@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public Slider healthSlider;
 
+    public TextMeshProUGUI mainText;
+
     bool gameOver;
 
     private int _health;
@@ -38,4 +40,5 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
 }
