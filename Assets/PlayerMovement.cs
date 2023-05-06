@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public int collectCount;
     public Vector3 moveDirection;
     public float speed;
+    public GameManager gmScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +32,16 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Collectible")
         {
-            collectCount++;
+            gmScript.ChangeMeter();
+            other.gameObject.GetComponent<AudioSource>().Play();
             Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Skateboard")
+        {
+            other.gameObject.transform.parent = this.gameObject.transform;
+            other.gameObject.transform.localPosition = new Vector3(0,-1,0);
+            other.gameObject.transform.localEulerAngles = Vector3.zero;
+            speed*=2;
         }
     }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Fire
   - Loader
+  - Collectible
+  - Skateboard
   layers:
   - Default
   - TransparentFX

@@ -7,38 +7,39 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
 
+    public decimal totalCubes;
+
+    public decimal healthAdd;
+
     public Slider healthSlider;
 
-    public TextMeshProUGUI mainText;
+    public TextMeshProUGUI gameOverText;
 
     bool gameOver;
 
-    private int _health;
-    public int Health{
-        get{
-            return _health;
-        }
-        set{
-            _health = value;
-            if (_health <= 0)
-            {
-                
-            }
-        }
-    }
+    private int health;
+    
     private void Awake() {
         
     }
     
     void Start()
     {
+        totalCubes = GameObject.FindGameObjectsWithTag("Collectible").Length;
+        healthAdd = 1/totalCubes;
         
     }
 
+    public void ChangeMeter(){
+        healthSlider.value+=(float)healthAdd;
+        if (healthSlider.value == 1)
+        {
+            GameOver();
+        }
+    }
 
-    void Update()
-    {
-        
+    public void GameOver(){
+        gameOverText.gameObject.SetActive(true);
     }
 
 }
